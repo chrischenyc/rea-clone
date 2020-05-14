@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Card } from 'react-bootstrap';
+import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io';
 
 import { priceString } from 'utils/priceString';
 
@@ -7,29 +9,34 @@ function SearchedPropertyItem({ property, favoured, onAddToFavourites, onRemoveF
   const { price, address } = property;
 
   return (
-    <div>
-      <div>{priceString(price)}</div>
-      <div>{address}</div>
+    <Card>
+      <Card.Body>
+        <Card.Title>{priceString(price)}</Card.Title>
 
-      {favoured && (
-        <button
-          onClick={() => {
-            onRemoveFromFavourites();
-          }}
-        >
-          remove from favourites
-        </button>
-      )}
-      {!favoured && (
-        <button
-          onClick={() => {
-            onAddToFavourites();
-          }}
-        >
-          add to favourites
-        </button>
-      )}
-    </div>
+        <Card.Text>{address}</Card.Text>
+
+        {favoured && (
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              onRemoveFromFavourites();
+            }}
+          >
+            <IoIosHeartDislike />
+          </Button>
+        )}
+        {!favoured && (
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              onAddToFavourites();
+            }}
+          >
+            <IoIosHeart />
+          </Button>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 

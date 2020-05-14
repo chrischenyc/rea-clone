@@ -1,24 +1,30 @@
 import React from 'react';
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Container, Tabs, Tab } from 'react-bootstrap';
+import styled from 'styled-components';
+
 import Search from './Search';
 import Favourites from './Favourites';
 
+const TabContainer = styled.div`
+  padding-top: 1em;
+`;
+
 function Home() {
   return (
-    <Tabs>
-      <TabList>
-        <Tab>Search</Tab>
-        <Tab>Favourites</Tab>
-      </TabList>
-
-      <TabPanel>
-        <Search />
-      </TabPanel>
-      <TabPanel>
-        <Favourites />
-      </TabPanel>
-    </Tabs>
+    <Container>
+      <Tabs defaultActiveKey="search" id="uncontrolled-tab-example">
+        <Tab eventKey="search" title="Search">
+          <TabContainer>
+            <Search />
+          </TabContainer>
+        </Tab>
+        <Tab eventKey="favourites" title="Favourites">
+          <TabContainer>
+            <Favourites />
+          </TabContainer>
+        </Tab>
+      </Tabs>
+    </Container>
   );
 }
 
