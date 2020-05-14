@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 import PropertySearchForm from 'components/PropertySearchForm';
 import PropertiesList from 'components/PropertiesList';
 import SearchedPropertyItem from 'components/SearchedPropertyItem';
 import { AppContext } from 'context';
 
+const SEARCH = gql`
+  query search($suburb: String!) {
+    search(suburb: $suburb) {
+      id
+      price
+      address
+    }
+  }
+`;
+
 function Search() {
-  const [matchedProperties, setMatchedProperties] = useState([]);
+  const [suburb, setSuburb] = useState('');
+
+  const { data, refetch } = useQuery(SEARCH, {
+    variables: { suburb },
+  });
+
+  const properties = (data && data.search) || [];
 
   const handleSearch = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      const { suburb } = values;
+    const { suburb } = values;
 
-      // TODO: search query with suburb
-      console.log(`search ${suburb}`);
+    setSuburb(suburb);
+    refetch();
 
-      setMatchedProperties([
-        { id: 'sdj23', price: 1200000, address: '12 York Street' },
-        { id: 'sdj24', price: 750000, address: '668 Inkerman Road' },
-      ]);
-
-      setSubmitting(false);
-    }, 400);
+    setSubmitting(false);
   };
 
   return (
@@ -30,8 +41,9 @@ function Search() {
         return (
           <div>
             <PropertySearchForm onSearch={handleSearch} />
+
             <PropertiesList
-              properties={matchedProperties}
+              properties={properties}
               renderItem={(property) => {
                 const favoured = favouriteProperties.find((favouriteProperty) => favouriteProperty.id === property.id);
 

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 import { defaultAppState, AppContext } from './context';
-
 import Home from './pages/Home';
+
+const apolloClient = new ApolloClient({
+  uri: process.env.SERVER_URL || 'http://localhost:4000/graphql',
+});
 
 function App() {
   const [appState, setAppState] = useState(defaultAppState);
@@ -45,13 +50,15 @@ function App() {
         removePropertyFromFavourites,
       }}
     >
-      <Router>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <ApolloProvider client={apolloClient}>
+        <Router>
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </ApolloProvider>
     </AppContext.Provider>
   );
 }
