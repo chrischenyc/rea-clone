@@ -7,9 +7,9 @@ import PropertiesList from 'components/PropertiesList';
 import SearchedPropertyItem from 'components/SearchedPropertyItem';
 import { AppContext } from 'context';
 
-const SEARCH = gql`
-  query search($suburb: String!) {
-    search(suburb: $suburb) {
+const QUERY_PROPERTIES_BY_SUBURB = gql`
+  query propertiesBySuburb($suburb: String!) {
+    propertiesBySuburb(suburb: $suburb) {
       id
       price
       address
@@ -18,29 +18,32 @@ const SEARCH = gql`
 `;
 
 function Search() {
+  // search keyword state
   const [suburb, setSuburb] = useState('');
 
-  const { data, refetch } = useQuery(SEARCH, {
+  // GraphqlQL query hook
+  const { error, data } = useQuery(QUERY_PROPERTIES_BY_SUBURB, {
     variables: { suburb },
   });
 
-  const properties = (data && data.search) || [];
+  // query result
+  const properties = (data && data.propertiesBySuburb) || [];
 
-  const handleSearch = (values, { setSubmitting }) => {
-    const { suburb } = values;
-
-    setSuburb(suburb);
-    refetch();
-
-    setSubmitting(false);
-  };
-
+  // render
   return (
     <AppContext.Consumer>
       {({ favouriteProperties, addPropertyToFavourites, removePropertyFromFavourites }) => {
         return (
           <div>
-            <PropertySearchForm onSearch={handleSearch} />
+            <PropertySearchForm
+              onSearch={(values, { setSubmitting }) => {
+                const { suburb } = values;
+                setSuburb(suburb);
+                setSubmitting(false);
+              }}
+            />
+
+            {error && <div>{`todo: proper GraphQL error handling... ${error}`}</div>}
 
             <PropertiesList
               properties={properties}

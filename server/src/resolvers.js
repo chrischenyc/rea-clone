@@ -1,9 +1,11 @@
+const { PropertiesController } = require('./controllers');
+
 const resolvers = {
   Query: {
-    search: (suburb) => [
-      { id: 'sdj23', price: 1200000, address: '12 York Street' },
-      { id: 'sdj24', price: 750000, address: '668 Inkerman Road' },
-    ],
+    propertiesBySuburb: async (parent, args, context, info) => {
+      const { suburb } = args;
+      return await PropertiesController.searchBySuburb(suburb);
+    },
   },
 };
 

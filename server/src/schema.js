@@ -7,8 +7,9 @@ const typeDefs = gql`
     price: Int!
     address: String!
   }
+
   type Query {
-    search(suburb: String!): [Property]!
+    propertiesBySuburb(suburb: String!): [Property]!
   }
 `;
 
