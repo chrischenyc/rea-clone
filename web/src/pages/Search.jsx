@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import PropertySearchForm from '../components/PropertySearchForm';
-import PropertiesList from '../components/PropertiesList';
-import PropertyItem from '../components/PropertyItem';
+import PropertySearchForm from 'components/PropertySearchForm';
+import PropertiesList from 'components/PropertiesList';
+import PropertyItem from 'components/PropertyItem';
 
 function Search() {
   const [matchedProperties, setMatchedProperties] = useState([

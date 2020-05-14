@@ -1,11 +1,5 @@
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -16,4 +10,4 @@ module.exports = {
   rules: {
     'no-console': 'warn',
   },
-}
+};

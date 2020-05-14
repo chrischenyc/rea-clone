@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import PropertiesList from '../components/PropertiesList';
-import FavouritePropertyItem from '../components/FavouritePropertyItem';
+import PropertiesList from 'components/PropertiesList';
+import FavouritePropertyItem from 'components/FavouritePropertyItem';
 
 function Favourites() {
   const [favouriteProperties, setFavouriteProperties] = useState([
