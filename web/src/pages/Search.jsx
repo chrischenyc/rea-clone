@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import PropertySearchForm from 'components/PropertySearchForm';
 import PropertiesList from 'components/PropertiesList';
-import PropertyItem from 'components/PropertyItem';
+import SearchedPropertyItem from 'components/SearchedPropertyItem';
 import { AppContext } from 'context';
 
 function Search() {
@@ -36,7 +36,7 @@ function Search() {
                 const favoured = favouriteProperties.find((favouriteProperty) => favouriteProperty.id === property.id);
 
                 return (
-                  <PropertyItem
+                  <SearchedPropertyItem
                     key={property.id}
                     property={property}
                     favoured={favoured}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PropertyItem({ property, favoured, onAddToFavourites, onRemoveFromFavourites }) {
+function SearchedPropertyItem({ property, favoured, onAddToFavourites, onRemoveFromFavourites }) {
   const { price, address } = property;
 
   return (
@@ -31,15 +31,15 @@ function PropertyItem({ property, favoured, onAddToFavourites, onRemoveFromFavou
   );
 }
 
-PropertyItem.defaultProps = {
+SearchedPropertyItem.defaultProps = {
   favoured: false,
 };
 
-PropertyItem.propTypes = {
+SearchedPropertyItem.propTypes = {
   property: PropTypes.object.isRequired,
   favoured: PropTypes.bool,
   onAddToFavourites: PropTypes.func.isRequired,
   onRemoveFromFavourites: PropTypes.func.isRequired,
 };
 
-export default PropertyItem;
+export default SearchedPropertyItem;
