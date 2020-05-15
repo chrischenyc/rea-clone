@@ -4,7 +4,7 @@
  * at the moment, it only exports one async search function
  */
 
-const { PropertiesDataProvider } = require('../models');
+const { PropertiesDataProvider } = require('../providers');
 
 // search function is agnostic to the underlying data storage mechanism
 const searchBySuburb = async (suburb) => {

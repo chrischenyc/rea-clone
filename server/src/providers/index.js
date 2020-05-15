@@ -1,6 +1,4 @@
-const PropertiesMockProvider = require('./mock.provider');
-const PropertiesDatabaseProvider = require('./database.provider');
-const PropertiesElasticSearchProvider = require('./elastic-search.provider');
+const { PropertiesMockProvider, PropertiesDatabaseProvider, PropertiesElasticSearchProvider } = require('./properties');
 
 let PropertiesDataProvider;
 

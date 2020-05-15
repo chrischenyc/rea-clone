@@ -16,5 +16,14 @@
   "devDependencies": {
     "jest": "^26.0.1",
     "nodemon": "^2.0.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "rootDir": "src",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coverageDirectory": "./coverage"
   }
 }
