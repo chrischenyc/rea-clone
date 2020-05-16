@@ -49,12 +49,12 @@ yarn dev
 // run unit tests
 yarn test
 
-// run e2e tests
+// run e2e tests in background
 yarn test:e2e
 
 // run e2e tests in chrome browser
 yarn test:e2e:chrome
-//
+
 ```
 
 ## TODO

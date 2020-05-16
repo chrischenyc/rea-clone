@@ -21,7 +21,7 @@ function Search() {
   // search keyword state
   const [suburb, setSuburb] = useState('');
 
-  // GraphqlQL query hook
+  // GraphQL query hook
   const { error, data } = useQuery(QUERY_PROPERTIES_BY_SUBURB, {
     variables: { suburb },
   });
@@ -48,7 +48,7 @@ function Search() {
             <PropertiesList
               properties={properties}
               renderItem={(property) => {
-                const favoured = favouriteProperties.find((favouriteProperty) => favouriteProperty.id === property.id);
+                const favoured = favouriteProperties.find((favouriteProperty) => favouriteProperty.id === property.id) !== undefined;
 
                 return (
                   <SearchedPropertyItem
